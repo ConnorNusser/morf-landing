@@ -25,12 +25,8 @@ export const EmailSignup: React.FC = () => {
       is_mobile: window.innerWidth < 768
     });
     
-    // For now, just open email client
-    const subject = 'Morf AI Fitness - Email List Signup';
-    const body = `Hi! I'd like to join the Morf AI Fitness email list.%0D%0A%0D%0AEmail: ${email}`;
-    const mailtoLink = `mailto:connornusser@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-    
-    window.open(mailtoLink, '_blank');
+    // Simulate brief processing time
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     // Track successful completion
     track('email_signup_completed', {
@@ -57,18 +53,19 @@ export const EmailSignup: React.FC = () => {
             className="font-semibold text-lg lg:text-xl mb-2"
             style={{ color: 'var(--color-accent)' }}
           >
-            Thanks for joining!
+            You&apos;re on the list! 🎉
           </div>
           <p 
             className="text-sm lg:text-base"
             style={{ color: 'var(--text-primary)', opacity: 0.8 }}
           >
-            We&apos;ve opened your email client. Send it to get notified when Morf launches!
+            We&apos;ll notify you when Morf launches. Get ready to transform your training!
           </p>
         </div>
         <button
           onClick={() => {
             setSubmitted(false);
+            setEmail('');
             // Track retry attempts
             track('email_signup_retry', {
               timestamp: new Date().toISOString(),
@@ -119,7 +116,7 @@ export const EmailSignup: React.FC = () => {
             border: 'none'
           }}
         >
-          {isSubmitting ? 'Joining...' : 'Submit'}
+          {isSubmitting ? 'Joining...' : 'Join Waitlist'}
         </Button>
       </form>
     </div>
