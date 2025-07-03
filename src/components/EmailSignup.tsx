@@ -16,47 +16,43 @@ export const EmailSignup: React.FC = () => {
 
     setIsSubmitting(true);
     
-    const signupData = {
-      email_domain: email.split('@')[1] || 'unknown',
-      timestamp: new Date().toISOString(),
-      user_agent: navigator.userAgent,
-      viewport_width: window.innerWidth,
-      is_mobile: window.innerWidth < 768,
-      full_email: email // Only for logs, not analytics for privacy
-    };
+    try {
+      // Send data to our API endpoint
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email,
+          userAgent: navigator.userAgent,
+          viewport: window.innerWidth,
+          isMobile: window.innerWidth < 768,
+          timestamp: new Date().toISOString()
+        }),
+      });
 
-    // Log to Vercel runtime logs
-    console.log('🚀 MORF SIGNUP STARTED:', JSON.stringify(signupData, null, 2));
-    
-    // Enhanced tracking with Vercel Analytics
-    track('email_signup_started', {
-      email_domain: signupData.email_domain,
-      timestamp: signupData.timestamp,
-      user_agent: signupData.user_agent,
-      viewport_width: signupData.viewport_width,
-      is_mobile: signupData.is_mobile
-    });
-    
-    // Simulate brief processing time
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    const completionData = {
-      email_domain: signupData.email_domain,
-      timestamp: new Date().toISOString(),
-      full_email: email
-    };
-
-    // Log completion to Vercel runtime logs
-    console.log('✅ MORF SIGNUP COMPLETED:', JSON.stringify(completionData, null, 2));
-    
-    // Track successful completion
-    track('email_signup_completed', {
-      email_domain: completionData.email_domain,
-      timestamp: completionData.timestamp,
-    });
-    
-    setSubmitted(true);
-    setIsSubmitting(false);
+      const result = await response.json();
+      
+      if (result.success) {
+        // Still track with Vercel Analytics as backup
+        track('email_signup_completed', {
+          email_domain: email.split('@')[1] || 'unknown',
+          timestamp: new Date().toISOString(),
+        });
+        
+        setSubmitted(true);
+      } else {
+        console.error('Failed to save email:', result.error);
+        // Show error or retry logic here
+      }
+      
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      // Handle error (maybe show a message to user)
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -88,12 +84,6 @@ export const EmailSignup: React.FC = () => {
             setSubmitted(false);
             setEmail('');
             
-            // Log retry to Vercel runtime logs
-            console.log('🔄 MORF SIGNUP RETRY:', JSON.stringify({
-              timestamp: new Date().toISOString(),
-              action: 'add_another_email'
-            }, null, 2));
-            
             // Track retry attempts
             track('email_signup_retry', {
               timestamp: new Date().toISOString(),
@@ -118,13 +108,6 @@ export const EmailSignup: React.FC = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           onFocus={() => {
-            // Log engagement to Vercel runtime logs
-            console.log('👁️ MORF EMAIL INPUT FOCUS:', JSON.stringify({
-              timestamp: new Date().toISOString(),
-              viewport_width: window.innerWidth,
-              is_mobile: window.innerWidth < 768
-            }, null, 2));
-            
             // Track form engagement
             track('email_input_focus', {
               timestamp: new Date().toISOString(),
