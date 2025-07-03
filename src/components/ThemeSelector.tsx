@@ -17,11 +17,11 @@ export const ThemeSelector: React.FC = () => {
   const { currentTheme, setTheme } = useTheme();
 
   const themeDisplayNames: Record<ThemeLevel, string> = {
-    beginner: 'Beginner - Studio Ghibli',
-    intermediate: 'Intermediate - Clean Material',
-    advanced: 'Advanced - iOS Inspired',
-    elite: 'Elite - Arctic Ice',
-    god: 'God - Dark Mastery',
+    beginner: 'Beginner - 0% Percentile',
+    intermediate: 'Intermediate - 25% Percentile',
+    advanced: 'Advanced - 50% Percentile',
+    elite: 'Elite - 75% Percentile',
+    god: 'God - 90% Percentile',
   };
 
   return (

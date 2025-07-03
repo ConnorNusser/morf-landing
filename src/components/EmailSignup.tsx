@@ -16,10 +16,13 @@ export const EmailSignup: React.FC = () => {
 
     setIsSubmitting(true);
     
-    // Track the signup event with Vercel Analytics
-    track('email_signup', {
+    // Enhanced tracking with Vercel Analytics
+    track('email_signup_started', {
       email_domain: email.split('@')[1] || 'unknown',
       timestamp: new Date().toISOString(),
+      user_agent: navigator.userAgent,
+      viewport_width: window.innerWidth,
+      is_mobile: window.innerWidth < 768
     });
     
     // For now, just open email client
@@ -28,6 +31,12 @@ export const EmailSignup: React.FC = () => {
     const mailtoLink = `mailto:connornusser@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
     
     window.open(mailtoLink, '_blank');
+    
+    // Track successful completion
+    track('email_signup_completed', {
+      email_domain: email.split('@')[1] || 'unknown',
+      timestamp: new Date().toISOString(),
+    });
     
     setSubmitted(true);
     setIsSubmitting(false);
@@ -58,7 +67,13 @@ export const EmailSignup: React.FC = () => {
           </p>
         </div>
         <button
-          onClick={() => setSubmitted(false)}
+          onClick={() => {
+            setSubmitted(false);
+            // Track retry attempts
+            track('email_signup_retry', {
+              timestamp: new Date().toISOString(),
+            });
+          }}
           className="text-sm transition-colors hover:opacity-70 min-h-[44px] flex items-center justify-center"
           style={{ color: 'var(--text-primary)', opacity: 0.6 }}
         >
@@ -77,6 +92,12 @@ export const EmailSignup: React.FC = () => {
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onFocus={() => {
+            // Track form engagement
+            track('email_input_focus', {
+              timestamp: new Date().toISOString(),
+            });
+          }}
           required
           className="flex-1 h-14 px-4 text-base rounded-lg focus:ring-2 transition-all"
           style={{ 
