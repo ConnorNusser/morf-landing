@@ -1,7 +1,5 @@
 import { ThemeLevel } from '@/types';
 
-export { ThemeLevel };
-
 export interface Theme {
   name: ThemeLevel;
   colors: {

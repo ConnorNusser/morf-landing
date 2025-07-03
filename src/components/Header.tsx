@@ -6,21 +6,25 @@ import { ThemeSelector } from './ThemeSelector';
 export const Header: React.FC = () => {
   return (
     <header 
-      className="w-full py-6 px-8 border-b"
+      className="border-b px-6 lg:px-16 py-4 lg:py-6 relative z-50 bg-opacity-80"
       style={{ 
         backgroundColor: 'var(--bg-background)',
-        borderColor: 'var(--border-color)'
+        borderColor: 'var(--border-color)',
+        backdropFilter: 'blur(10px)',
+        opacity: 0.9
       }}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <div 
-          className="text-3xl font-bold"
-          style={{ color: 'var(--color-primary)' }}
+          className="text-2xl lg:text-3xl font-bold"
+          style={{ color: 'var(--text-primary)' }}
         >
           Morf
         </div>
         
-        <ThemeSelector />
+        <div className="flex items-center">
+          <ThemeSelector />
+        </div>
       </div>
     </header>
   );

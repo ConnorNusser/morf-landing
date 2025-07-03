@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { themes, ThemeLevel } from '@/lib/themes';
+import { themes } from '@/lib/themes';
+import { ThemeLevel } from '@/types';
 import {
   Select,
   SelectContent,
@@ -24,9 +25,10 @@ export const ThemeSelector: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-2 lg:gap-4">
       <Badge 
         variant="secondary" 
+        className="hidden sm:block"
         style={{ 
           backgroundColor: 'var(--bg-surface)',
           color: 'var(--text-primary)',
@@ -37,7 +39,7 @@ export const ThemeSelector: React.FC = () => {
       </Badge>
       <Select value={currentTheme} onValueChange={(value: ThemeLevel) => setTheme(value)}>
         <SelectTrigger 
-          className="w-64"
+          className="w-44 sm:w-56 lg:w-72 min-h-[44px]"
           style={{ 
             backgroundColor: 'var(--bg-surface)',
             color: 'var(--text-primary)',
@@ -48,6 +50,7 @@ export const ThemeSelector: React.FC = () => {
           <SelectValue placeholder="Select a theme" />
         </SelectTrigger>
         <SelectContent 
+          className="w-64 sm:w-72"
           style={{ 
             backgroundColor: 'var(--bg-surface)',
             border: '1px solid var(--border-color)',
@@ -61,17 +64,17 @@ export const ThemeSelector: React.FC = () => {
               style={{ 
                 color: 'var(--text-primary)',
               }}
-              className="hover:bg-opacity-10"
+              className="hover:bg-opacity-10 min-h-[44px] cursor-pointer"
             >
               <div className="flex items-center gap-3">
                 <div 
-                  className="w-4 h-4 rounded-full border"
+                  className="w-4 h-4 rounded-full border flex-shrink-0"
                   style={{ 
                     backgroundColor: themes[key as ThemeLevel].colors.primary,
                     borderColor: themes[key as ThemeLevel].colors.border
                   }}
                 />
-                {displayName}
+                <span className="text-sm sm:text-base">{displayName}</span>
               </div>
             </SelectItem>
           ))}

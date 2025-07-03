@@ -1,7 +1,8 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { ThemeLevel, Theme, themes } from '@/lib/themes';
+import { ThemeLevel } from '@/types';
+import { Theme, themes } from '@/lib/themes';
 
 interface ThemeContextType {
   currentTheme: ThemeLevel;

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { track } from '@vercel/analytics';
 
 export const EmailSignup: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -15,7 +16,13 @@ export const EmailSignup: React.FC = () => {
 
     setIsSubmitting(true);
     
-    // For now, just open email client - you can later integrate with a service like ConvertKit, Mailchimp, etc.
+    // Track the signup event with Vercel Analytics
+    track('email_signup', {
+      email_domain: email.split('@')[1] || 'unknown',
+      timestamp: new Date().toISOString(),
+    });
+    
+    // For now, just open email client
     const subject = 'Morf AI Fitness - Email List Signup';
     const body = `Hi! I'd like to join the Morf AI Fitness email list.%0D%0A%0D%0AEmail: ${email}`;
     const mailtoLink = `mailto:connornusser@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
@@ -28,102 +35,70 @@ export const EmailSignup: React.FC = () => {
 
   if (submitted) {
     return (
-      <div 
-        className="flex flex-col items-center gap-6 p-10 rounded-2xl border-2 transform transition-all duration-500 hover:scale-105 animate-pulse"
-        style={{ 
-          backgroundColor: 'var(--bg-surface)',
-          borderColor: 'var(--color-primary)',
-          borderRadius: 'var(--border-radius)',
-          boxShadow: `0 20px 40px rgba(0,0,0,0.1)`
-        }}
-      >
+      <div className="space-y-4">
         <div 
-          className="text-2xl font-bold animate-bounce"
-          style={{ color: 'var(--color-primary)' }}
-        >
-          Thanks for joining!
-        </div>
-        <p 
-          className="text-center text-lg opacity-90"
-          style={{ color: 'var(--text-primary)' }}
-        >
-          We've opened your email client. Send it to get notified when Morf launches!
-        </p>
-        <Button
-          variant="outline"
-          onClick={() => setSubmitted(false)}
-          className="transform transition-all duration-200 hover:scale-105 hover:shadow-lg text-lg px-8 py-4"
+          className="border rounded-xl p-6"
           style={{ 
-            color: 'var(--text-primary)',
-            borderColor: 'var(--border-color)',
-            backgroundColor: 'transparent',
+            backgroundColor: 'var(--bg-surface)',
+            borderColor: 'var(--color-accent)',
             borderRadius: 'var(--border-radius)'
           }}
         >
+          <div 
+            className="font-semibold text-lg lg:text-xl mb-2"
+            style={{ color: 'var(--color-accent)' }}
+          >
+            Thanks for joining!
+          </div>
+          <p 
+            className="text-sm lg:text-base"
+            style={{ color: 'var(--text-primary)', opacity: 0.8 }}
+          >
+            We&apos;ve opened your email client. Send it to get notified when Morf launches!
+          </p>
+        </div>
+        <button
+          onClick={() => setSubmitted(false)}
+          className="text-sm transition-colors hover:opacity-70 min-h-[44px] flex items-center justify-center"
+          style={{ color: 'var(--text-primary)', opacity: 0.6 }}
+        >
           Add another email
-        </Button>
+        </button>
       </div>
     );
   }
 
   return (
-    <div 
-      className="w-full max-w-2xl mx-auto p-10 rounded-2xl border-2 transform transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl"
-      style={{ 
-        backgroundColor: 'var(--bg-surface)',
-        borderColor: 'var(--border-color)',
-        borderRadius: 'var(--border-radius)',
-        boxShadow: `0 10px 30px rgba(0,0,0,0.1)`
-      }}
-    >
-      <div className="text-center mb-8">
-        <h3 
-          className="text-3xl font-bold mb-4 transform transition-all duration-300 hover:scale-105"
-          style={{ color: 'var(--text-primary)' }}
-        >
-          Get Early Access
-        </h3>
-        <p 
-          className="text-lg opacity-80"
-          style={{ color: 'var(--text-primary)' }}
-        >
-          Be the first to experience AI-powered workouts
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="space-y-4 lg:space-y-6">
+      {/* Email Form - Mobile-first responsive */}
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
         <Input
           type="email"
-          placeholder="Enter your email address"
+          placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full text-lg py-6 px-6 transform transition-all duration-200 focus:scale-[1.02] focus:shadow-lg hover:shadow-md"
+          className="flex-1 h-14 px-4 text-base rounded-lg focus:ring-2 transition-all"
           style={{ 
-            backgroundColor: 'var(--bg-background)',
+            backgroundColor: 'var(--bg-surface)',
             color: 'var(--text-primary)',
             borderColor: 'var(--border-color)',
             borderRadius: 'var(--border-radius)',
-            fontSize: '18px',
-            height: '60px'
           }}
         />
         
         <Button
           type="submit"
           disabled={isSubmitting || !email}
-          className="w-full text-xl py-8 font-semibold transform transition-all duration-200 hover:scale-[1.02] hover:shadow-xl active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="h-14 px-8 rounded-lg font-medium text-base transition-all disabled:opacity-50 w-full sm:w-auto min-w-[120px]"
           style={{ 
             backgroundColor: 'var(--color-primary)',
             color: 'var(--bg-background)',
             borderRadius: 'var(--border-radius)',
-            border: 'none',
-            height: '70px'
+            border: 'none'
           }}
         >
-          <span className={isSubmitting ? 'animate-pulse' : ''}>
-            {isSubmitting ? 'Joining...' : 'Join Waitlist'}
-          </span>
+          {isSubmitting ? 'Joining...' : 'Submit'}
         </Button>
       </form>
     </div>
