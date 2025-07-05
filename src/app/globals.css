@@ -241,9 +241,15 @@ button:hover, a:hover {
   opacity: 0.05;
 }
 
-/* Hide floating logos on mobile for cleaner look */
+/* Hide floating logos on mobile for cleaner look and prevent z-index issues */
 @media (max-width: 768px) {
   .floating-logo {
-    display: none;
+    display: none !important;
   }
+}
+
+/* Ensure video iframes are always clickable */
+iframe {
+  pointer-events: auto !important;
+  z-index: 50 !important;
 }

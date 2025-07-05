@@ -40,7 +40,7 @@ export const MainSection: React.FC = () => {
           
           <div className="text-center mb-6 relative z-10">
             <h2 
-              className="text-2xl lg:text-3xl font-bold mb-4 mt-20"
+              className="text-2xl lg:text-3xl font-bold mb-4 mt-4 lg:mt-20"
               style={{ color: 'var(--text-primary)' }}
             >
               See Morf in Action
@@ -54,7 +54,7 @@ export const MainSection: React.FC = () => {
           </div>
           
           <div 
-            className="relative w-full rounded-2xl overflow-hidden shadow-2xl"
+            className="relative w-full rounded-2xl overflow-hidden shadow-2xl z-20"
             style={{ 
               aspectRatio: '16/9',
               backgroundColor: 'var(--bg-surface)',
@@ -65,8 +65,10 @@ export const MainSection: React.FC = () => {
               src="https://www.loom.com/embed/f8acff7e023f400c9eb14e8638e8977f?sid=3c5b1b3c-3c5b-4c3c-8c3c-3c5b1b3c3c5b"
               frameBorder="0"
               allowFullScreen
-              className="absolute inset-0 w-full h-full"
+              className="absolute inset-0 w-full h-full z-30"
               title="Morf Demo Video"
+              allow="autoplay; fullscreen"
+              style={{ pointerEvents: 'auto' }}
             />
           </div>
         </div>
@@ -299,8 +301,8 @@ export const MainSection: React.FC = () => {
         </div>
 
         {/* Content Section - Centered on all devices */}
-        <div className="w-full flex items-center justify-center min-h-screen lg:min-h-auto pb-8 lg:pb-12 pt-0 px-6 lg:px-20 relative z-10">
-          <div className="max-w-4xl w-full space-y-8 lg:space-y-12 text-center lg:mt-20">
+        <div className="w-full flex items-center justify-center min-h-0 lg:min-h-auto pb-8 lg:pb-12 pt-4 lg:pt-0 px-6 lg:px-20 relative z-10">
+          <div className="max-w-4xl w-full space-y-8 lg:space-y-12 text-center mt-4 lg:mt-20">
           {/* Main Heading - Mobile optimized */}
           <div className="space-y-3 lg:space-y-4">
             <h1 
