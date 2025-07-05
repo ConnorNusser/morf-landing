@@ -49,7 +49,7 @@ export const MainSection: React.FC = () => {
               className="text-lg lg:text-xl max-w-2xl mx-auto"
               style={{ color: 'var(--text-primary)', opacity: 0.8 }}
             >
-              Watch how AI-powered training adapts to create the perfect workout for you.
+              Dev Vlog of Morf and first iteration of the app :).
             </p>
           </div>
           
