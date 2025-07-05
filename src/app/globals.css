@@ -1,13 +1,12 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-suse);
+  --font-mono: var(--font-manrope);
+  --font-suse: var(--font-suse);
+  --font-manrope: var(--font-manrope);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -130,7 +129,7 @@
     @apply bg-background text-foreground;
     margin: 0;
     padding: 0;
-    font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: var(--font-suse), var(--font-manrope), sans-serif;
   }
   
   html {
@@ -180,4 +179,71 @@ button:hover, a:hover {
 
 .animate-scroll-down {
   animation: scroll-down 35s linear infinite;
+}
+
+/* Futuristic logo animations */
+@keyframes logo-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 107, 207, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 107, 207, 0.6));
+  }
+}
+
+@keyframes logo-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+.logo-animated {
+  animation: logo-glow 3s ease-in-out infinite, logo-float 4s ease-in-out infinite;
+}
+
+.logo-gradient-shift {
+  animation: gradient-shift 8s linear infinite;
+}
+
+/* Floating logo background */
+.floating-logo {
+  position: fixed;
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 1;
+  animation: logo-float 6s ease-in-out infinite;
+  filter: blur(0.5px);
+  transition: opacity 0.3s ease;
+}
+
+.floating-logo:hover {
+  opacity: 0.05;
+}
+
+/* Hide floating logos on mobile for cleaner look */
+@media (max-width: 768px) {
+  .floating-logo {
+    display: none;
+  }
 }
