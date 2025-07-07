@@ -21,14 +21,34 @@ export const Footer: React.FC = () => {
             Morf
           </div>
 
-          {/* Right side - Contact email */}
-          <a
-            href="mailto:connornusser@gmail.com"
-            className="text-base font-medium hover:underline transition-all duration-200"
-            style={{ color: 'var(--text-primary)', opacity: 0.8 }}
-          >
-            connornusser@gmail.com
-          </a>
+          {/* Right side - Contact links */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
+            <a
+              href="https://www.youtube.com/@connor-nusser"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base font-medium hover:underline transition-all duration-200"
+              style={{ color: 'var(--text-primary)', opacity: 0.8 }}
+            >
+              YouTube
+            </a>
+            <a
+              href="https://www.reddit.com/r/morffit/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-base font-medium hover:underline transition-all duration-200"
+              style={{ color: 'var(--text-primary)', opacity: 0.8 }}
+            >
+              Reddit
+            </a>
+            <a
+              href="mailto:connornusser@gmail.com"
+              className="text-base font-medium hover:underline transition-all duration-200"
+              style={{ color: 'var(--text-primary)', opacity: 0.8 }}
+            >
+              connornusser@gmail.com
+            </a>
+          </div>
         </div>
       </div>
     </footer>
