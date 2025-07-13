@@ -104,7 +104,7 @@ export default function PrivacyPolicyPage() {
 
           <section>
             <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--color-primary)' }}>
-              5. Children's Privacy
+              5. Children&apos;s Privacy
             </h2>
             <p style={{ opacity: 0.9 }}>
               Since we do not collect any personal information from anyone, including children under 13, our app is safe for users of all ages from a privacy perspective.
