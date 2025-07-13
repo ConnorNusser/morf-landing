@@ -42,6 +42,13 @@ export const Footer: React.FC = () => {
               Reddit
             </a>
             <a
+              href="/privacy"
+              className="text-base font-medium hover:underline transition-all duration-200"
+              style={{ color: 'var(--text-primary)', opacity: 0.8 }}
+            >
+              Privacy Policy
+            </a>
+            <a
               href="mailto:connornusser@gmail.com"
               className="text-base font-medium hover:underline transition-all duration-200"
               style={{ color: 'var(--text-primary)', opacity: 0.8 }}
