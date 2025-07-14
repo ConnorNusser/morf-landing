@@ -134,7 +134,7 @@ export const EmailSignup: React.FC = () => {
             border: 'none'
           }}
         >
-          {isSubmitting ? 'Joining...' : 'Join Waitlist'}
+          {isSubmitting ? 'Joining...' : 'Join newsletter'}
         </Button>
       </form>
     </div>

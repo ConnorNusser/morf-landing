@@ -25,7 +25,7 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  const [currentTheme, setCurrentTheme] = useState<ThemeLevel>('beginner');
+  const [currentTheme, setCurrentTheme] = useState<ThemeLevel>('god');
 
   useEffect(() => {
     // Load theme from localStorage if available
