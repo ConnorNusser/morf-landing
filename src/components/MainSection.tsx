@@ -89,6 +89,7 @@ const MobileHeroSection: React.FC = () => {
           {/* Column 2 - Scrolling Down */}
           <div className="animate-scroll-down overflow-hidden">
             <div className="space-y-2">
+              {/* First set */}
               <div className="relative group">
                 <img src="/image2.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
               </div>
@@ -101,6 +102,33 @@ const MobileHeroSection: React.FC = () => {
               <div className="relative group">
                 <img src="/image8.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
               </div>
+              {/* Second set */}
+              <div className="relative group">
+                <img src="/image2.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
+              </div>
+              <div className="relative group">
+                <img src="/image4.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
+              </div>
+              <div className="relative group">
+                <img src="/image6.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
+              </div>
+              <div className="relative group">
+                <img src="/image8.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
+              </div>
+              {/* Third set */}
+              <div className="relative group">
+                <img src="/image2.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
+              </div>
+              <div className="relative group">
+                <img src="/image4.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
+              </div>
+              <div className="relative group">
+                <img src="/image6.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
+              </div>
+              <div className="relative group">
+                <img src="/image8.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
+              </div>
+              {/* Fourth set */}
               <div className="relative group">
                 <img src="/image2.png" alt="" className="w-full rounded-lg filter blur-[1px] group-hover:blur-none transition-all duration-500 object-cover" style={{ minHeight: '120px' }} />
               </div>
