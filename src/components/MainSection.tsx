@@ -25,7 +25,7 @@ const MobileHeroSection: React.FC = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 text-center relative overflow-hidden">
+    <section className="min-h-screen flex items-start justify-center px-6 text-center relative overflow-hidden pt-[20vh]">
       {/* Animated Background Images - A/B Test */}
       {showAnimatedBg && (
         <div className="fixed inset-0 grid grid-cols-2 gap-2 p-2 opacity-15 overflow-hidden z-0" style={{ top: '-20vh', bottom: '-20vh' }}>
