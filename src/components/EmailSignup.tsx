@@ -114,12 +114,14 @@ export const EmailSignup: React.FC = () => {
             });
           }}
           required
-          className="flex-1 h-16 px-4 text-base rounded-lg focus:ring-2 transition-all"
+          className="flex-1 h-16 px-4 text-base rounded-lg focus:ring-2 transition-all relative z-30"
           style={{ 
             backgroundColor: 'var(--bg-surface)',
             color: 'var(--text-primary)',
             borderColor: 'var(--border-color)',
             borderRadius: 'var(--border-radius)',
+            pointerEvents: 'auto',
+            touchAction: 'manipulation'
           }}
         />
         

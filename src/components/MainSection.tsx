@@ -45,7 +45,7 @@ const MobileHeroSection: React.FC = () => {
     <section className="min-h-screen flex items-start justify-center px-6 text-center relative overflow-hidden pt-[20vh]">
       {/* Animated Background Images - A/B Test */}
       {showAnimatedBg && (
-        <div className="fixed inset-0 grid grid-cols-2 gap-2 p-2 opacity-15 overflow-hidden z-0" style={{ top: '-240vh', bottom: '-400vh' }}>
+        <div className="fixed inset-0 grid grid-cols-2 gap-2 p-2 opacity-15 overflow-hidden z-0 pointer-events-none" style={{ top: '-240vh', bottom: '-400vh' }}>
           {/* Column 1 - Scrolling Up */}
           <div className="animate-scroll-up overflow-hidden">
             <div className="space-y-2">
@@ -305,7 +305,7 @@ export const MainSection: React.FC = () => {
       </div>
 
       {/* Newsletter Signup Section */}
-      <section className="pb-8 lg:pb-12 pt-8 lg:pt-0 px-6 lg:px-16" data-newsletter-section>
+      <section className="pb-8 lg:pb-12 pt-8 lg:pt-0 px-6 lg:px-16 relative z-20" data-newsletter-section>
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-3 lg:space-y-4 mb-8">
             <p className="text-lg lg:text-xl leading-relaxed" style={{ color: 'var(--text-primary)', opacity: 0.8 }}>
@@ -321,7 +321,7 @@ export const MainSection: React.FC = () => {
       </section>
 
       {/* Demo Video Section */}
-      <section className="pb-8 lg:pb-12 pt-0 px-6 lg:px-16">
+      <section className="pb-8 lg:pb-12 pt-16 px-6 lg:px-16">
         <div className="max-w-4xl mx-auto relative">
           <div className="absolute -top-5 -right-5 opacity-10 pointer-events-none z-0">
             <img src="/icon.png" alt="" className="h-16 w-auto logo-animated" style={{ transform: 'rotate(25deg)' }} />
