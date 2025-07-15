@@ -15,6 +15,23 @@ const MobileHeroSection: React.FC = () => {
   }, []);
 
   const handleDownloadClick = (platform: 'ios' | 'android') => {
+    if (platform === 'android') {
+      // Scroll to newsletter section
+      const newsletterSection = document.querySelector('[data-newsletter-section]');
+      if (newsletterSection) {
+        newsletterSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        });
+        
+        // Add a brief highlight effect to the newsletter section
+        newsletterSection.classList.add('highlight-newsletter');
+        setTimeout(() => {
+          newsletterSection.classList.remove('highlight-newsletter');
+        }, 2000);
+      }
+    }
+    
     track(`${platform}_download_clicked`, {
       platform,
       device_type: 'mobile',
@@ -178,16 +195,16 @@ const MobileHeroSection: React.FC = () => {
               </svg>
               Download Now
             </a>
-            <div 
-              className="inline-flex items-center justify-center gap-3 px-12 py-4 text-xl font-semibold rounded-full cursor-not-allowed opacity-60"
+            <button 
+              className="inline-flex items-center justify-center gap-3 px-12 py-4 text-xl font-semibold rounded-full transition-all duration-200 hover:opacity-90 hover:scale-105"
               style={{ backgroundColor: 'var(--color-accent)', color: 'var(--bg-background)' }}
               onClick={() => handleDownloadClick('android')}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.28-.54-.37-.83-.22-.3.16-.42.54-.26.85L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25S18.25 13.31 18.25 14s-.56 1.25-1.25 1.25z"/>
               </svg>
-              Coming Soon
-            </div>
+              Join Waitlist
+            </button>
           </div>
         </div>
       </div>
@@ -196,7 +213,35 @@ const MobileHeroSection: React.FC = () => {
 };
 
 // Desktop Hero Component
-const DesktopHeroSection: React.FC = () => (
+const DesktopHeroSection: React.FC = () => {
+  const handleDownloadClick = (platform: 'ios' | 'android') => {
+    if (platform === 'android') {
+      // Scroll to newsletter section
+      const newsletterSection = document.querySelector('[data-newsletter-section]');
+      if (newsletterSection) {
+        newsletterSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'center'
+        });
+        
+        // Add a brief highlight effect to the newsletter section
+        newsletterSection.classList.add('highlight-newsletter');
+        setTimeout(() => {
+          newsletterSection.classList.remove('highlight-newsletter');
+        }, 2000);
+      }
+    }
+    
+    track(`${platform}_download_clicked`, {
+      platform,
+      device_type: 'desktop',
+      animated_bg_variant: 'no_animation',
+      ...(platform === 'android' && { status: 'coming_soon' }),
+      timestamp: new Date().toISOString(),
+    });
+  };
+
+  return (
   <section className="flex items-center justify-center px-16 py-20 text-center relative">
     <div className="max-w-lg mx-auto space-y-10">
       {/* Logo */}
@@ -223,43 +268,29 @@ const DesktopHeroSection: React.FC = () => (
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-3 px-16 py-4 text-xl font-semibold rounded-full transition-all duration-200 hover:opacity-90 hover:scale-105"
             style={{ backgroundColor: 'var(--color-primary)', color: 'var(--bg-background)' }}
-            onClick={() => {
-              track('ios_download_clicked', {
-                platform: 'ios',
-                device_type: 'desktop',
-                animated_bg_variant: 'no_animation',
-                timestamp: new Date().toISOString(),
-              });
-            }}
+            onClick={() => handleDownloadClick('ios')}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.13997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
             </svg>
             Download Now
           </a>
-          <div 
-            className="inline-flex items-center justify-center gap-3 px-16 py-4 text-xl font-semibold rounded-full cursor-not-allowed opacity-60"
+          <button 
+            className="inline-flex items-center justify-center gap-3 px-16 py-4 text-xl font-semibold rounded-full transition-all duration-200 hover:opacity-90 hover:scale-105"
             style={{ backgroundColor: 'var(--color-accent)', color: 'var(--bg-background)' }}
-            onClick={() => {
-              track('android_download_clicked', {
-                platform: 'android',
-                device_type: 'desktop',
-                animated_bg_variant: 'no_animation',
-                status: 'coming_soon',
-                timestamp: new Date().toISOString(),
-              });
-            }}
+            onClick={() => handleDownloadClick('android')}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.28-.54-.37-.83-.22-.3.16-.42.54-.26.85L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25S18.25 13.31 18.25 14s-.56 1.25-1.25 1.25z"/>
             </svg>
-            Coming Soon
-          </div>
+            Join Waitlist
+          </button>
         </div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export const MainSection: React.FC = () => {
   return (
@@ -274,14 +305,15 @@ export const MainSection: React.FC = () => {
       </div>
 
       {/* Newsletter Signup Section */}
-      <section className="pb-8 lg:pb-12 pt-8 lg:pt-0 px-6 lg:px-16">
+      <section className="pb-8 lg:pb-12 pt-8 lg:pt-0 px-6 lg:px-16" data-newsletter-section>
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-3 lg:space-y-4 mb-8">
             <p className="text-lg lg:text-xl leading-relaxed" style={{ color: 'var(--text-primary)', opacity: 0.8 }}>
               AI-powered workouts that adapt to your progress, equipment, and fitness level.{' '}
               <span className="font-semibold" style={{ color: 'var(--color-primary)' }}>
-                Stay updated
-              </span>
+                Get updates
+              </span>{' '}
+              on new features and Android launch.
             </p>
           </div>
           <EmailSignup />

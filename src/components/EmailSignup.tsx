@@ -76,7 +76,7 @@ export const EmailSignup: React.FC = () => {
             className="text-sm lg:text-base"
             style={{ color: 'var(--text-primary)', opacity: 0.8 }}
           >
-            We&apos;ll notify you when Morf launches. Get ready to transform your training!
+            You&apos;re signed up for updates! We&apos;ll notify you about new features and when Morf launches on Android.
           </p>
         </div>
         <button
@@ -134,7 +134,7 @@ export const EmailSignup: React.FC = () => {
             border: 'none'
           }}
         >
-          {isSubmitting ? 'Joining...' : 'Join newsletter'}
+          {isSubmitting ? 'Joining...' : 'Get updates'}
         </Button>
       </form>
     </div>

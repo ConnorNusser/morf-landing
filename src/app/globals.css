@@ -248,6 +248,26 @@ button:hover, a:hover {
   }
 }
 
+/* Highlight effect for newsletter section when coming from Android button */
+.highlight-newsletter {
+  animation: newsletter-highlight 2s ease-in-out;
+}
+
+@keyframes newsletter-highlight {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px rgba(139, 90, 60, 0));
+  }
+  50% {
+    transform: scale(1.02);
+    filter: drop-shadow(0 0 20px rgba(139, 90, 60, 0.3));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px rgba(139, 90, 60, 0));
+  }
+}
+
 /* Ensure video iframes are always clickable */
 iframe {
   pointer-events: auto !important;
