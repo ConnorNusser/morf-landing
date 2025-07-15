@@ -114,7 +114,7 @@ export const EmailSignup: React.FC = () => {
             });
           }}
           required
-          className="flex-1 h-14 px-4 text-base rounded-lg focus:ring-2 transition-all"
+          className="flex-1 h-16 px-4 text-base rounded-lg focus:ring-2 transition-all"
           style={{ 
             backgroundColor: 'var(--bg-surface)',
             color: 'var(--text-primary)',
@@ -126,7 +126,7 @@ export const EmailSignup: React.FC = () => {
         <Button
           type="submit"
           disabled={isSubmitting || !email}
-          className="h-14 px-8 rounded-lg font-medium text-base transition-all disabled:opacity-50 w-full sm:w-auto min-w-[120px]"
+          className="h-16 px-8 rounded-lg font-medium text-base transition-all disabled:opacity-50 w-full sm:w-auto min-w-[120px]"
           style={{ 
             backgroundColor: 'var(--color-primary)',
             color: 'var(--bg-background)',
