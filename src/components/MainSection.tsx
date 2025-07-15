@@ -28,7 +28,7 @@ const MobileHeroSection: React.FC = () => {
     <section className="min-h-screen flex items-start justify-center px-6 text-center relative overflow-hidden pt-[20vh]">
       {/* Animated Background Images - A/B Test */}
       {showAnimatedBg && (
-        <div className="fixed inset-0 grid grid-cols-2 gap-2 p-2 opacity-15 overflow-hidden z-0" style={{ top: '-360vh', bottom: '-460vh' }}>
+        <div className="fixed inset-0 grid grid-cols-2 gap-2 p-2 opacity-15 overflow-hidden z-0" style={{ top: '-240vh', bottom: '-400vh' }}>
           {/* Column 1 - Scrolling Up */}
           <div className="animate-scroll-up overflow-hidden">
             <div className="space-y-2">
